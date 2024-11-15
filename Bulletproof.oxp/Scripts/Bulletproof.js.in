@@ -1,0 +1,35 @@
+// https://wiki.alioth.net/index.php/Oolite_JavaScript_Reference:_World_script_event_handlers
+
+"use strict";
+
+this.name        = "@OXP_TITLE@";
+this.author      = "@OXP_AUTHOR@";
+this.copyright   = "2024 @OXP_AUTHOR@";
+this.licence     = "@OXP_LICENSE@";
+this.description = "@OXP_DESCRIPTION@";
+this.version     = "@OXP_VERSION@";
+
+
+this.$log_enabled = true;
+this._log = function(log_message) {
+    if (this.$log_enabled) { log(this.name, log_message) }
+}
+
+
+this.startUp = function() {
+    this._log("startUp");
+}
+
+
+// see https://bb.oolite.space/viewtopic.php?p=284994#p284994
+this.shipBeingAttacked = function(whom)
+{
+    player.ship.aftShield = player.ship.maxAftShield;
+    player.ship.forwardShield = player.ship.maxForwardShield;
+}
+
+this.shipBeingAttackedByCloaked = function()
+{
+    player.ship.aftShield = player.ship.maxAftShield;
+    player.ship.forwardShield = player.ship.maxForwardShield;
+}
