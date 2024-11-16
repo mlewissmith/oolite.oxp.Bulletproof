@@ -38,8 +38,8 @@ oxz_target = custom_target(
   input            : oxp_files,
   output           : oxz_file,
   env              : {
-                       'ZIP_OPTS' : '-MM -FS -v',
-                       'ZIP_DIR' : oxp_srcdir,
+                       'ZIP_OPTS'    : '-MM -FS -v',
+                       'ZIP_BASEDIR' : oxp_srcdir,
                      },
   command          : [ZIP_SH, '@OUTPUT@', '@INPUT@'],
   build_by_default : true,
