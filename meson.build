@@ -8,8 +8,6 @@ PROJECT_NAME     = meson.project_name()
 PROJECT_VERSION  = meson.project_version()
 PROJECT_LICENSE  = meson.project_license().get(0)
 
-ZIP = find_program('zip', required : true)
-
 prj_config = configuration_data(
   {
     'OXP_TITLE'       : 'Bulletproof OXP',
@@ -24,17 +22,26 @@ prj_config = configuration_data(
   }
 )
 
-oxp_files = []
+################################################################################
 
-subdir('Bulletproof.oxp')
+oxp_srcdir = 'Bulletproof.oxp'
+oxp_files = []
+subdir(oxp_srcdir)
+
+
+
 
 oxz_file = prj_config.get('OXP_IDENTIFIER') + '.oxz'
-
+ZIP_SH = find_program('zip.sh', required : true)
 oxz_target = custom_target(
   'oxz',
   input            : oxp_files,
   output           : oxz_file,
-  command          : [ZIP, '-FS', '@OUTPUT@', '@INPUT@'],
+  env              : {
+                       'ZIP_OPTS' : '-MM -FS -v',
+                       'ZIP_DIR' : oxp_srcdir,
+                     },
+  command          : [ZIP_SH, '@OUTPUT@', '@INPUT@'],
   build_by_default : true,
 )
 
