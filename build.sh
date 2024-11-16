@@ -29,7 +29,13 @@ do
 done
 shift $(( ${OPTIND} - 1 ))
 
+################################################################################
+
 cd ${workdir}
 ${rm_builddir} && rm -fr ${builddir}
 meson setup --fatal-meson-warnings ${meson_setup_opts} ${builddir}
 meson compile -v -C ${builddir} "$@"
+
+################################################################################
+
+cp -v -t ${workdir} $(find $builddir -type f -name "*.oxz")

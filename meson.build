@@ -11,7 +11,7 @@ PROJECT_LICENSE  = meson.project_license().get(0)
 prj_config = configuration_data(
   {
     'OXP_TITLE'       : 'Bulletproof OXP',
-    'OXP_DESCRIPTION' : '[TODO]',
+    'OXP_DESCRIPTION' : 'Player\'s ship is immune to lasers',
     'OXP_AUTHOR'      : 'mils32k',
     'OXP_IDENTIFIER'  : 'oolite.oxp.mils32k.Bulletproof',
     'OXP_VERSION'     : PROJECT_VERSION,
@@ -28,20 +28,36 @@ oxp_srcdir = 'Bulletproof.oxp'
 oxp_files = []
 subdir(oxp_srcdir)
 
-
-
-
-oxz_file = prj_config.get('OXP_IDENTIFIER') + '.oxz'
 ZIP_SH = find_program('zip.sh', required : true)
-oxz_target = custom_target(
+oxz_file = custom_target(
   'oxz',
   input            : oxp_files,
-  output           : oxz_file,
+  output           : prj_config.get('OXP_IDENTIFIER') + '.oxz',
   env              : {
-                       'ZIP_OPTS'    : '-MM -FS -v',
+                       'ZIP_OPTS'    : '-FS -v',
                        'ZIP_BASEDIR' : oxp_srcdir,
                      },
-  command          : [ZIP_SH, '@OUTPUT@', '@INPUT@'],
+  command          : [ ZIP_SH, '@OUTPUT@', '@INPUT@' ],
   build_by_default : true,
 )
 
+################################################################################
+
+verify_oxp = custom_target(
+  'verify-oxp',
+  output : '.PHONY.verify-oxp',
+  command : [ 'head', '-n-0', oxp_files ],
+)
+
+verify_oxz = custom_target(
+  'verify-oxz',
+  output : '.PHONY.verify-oxz',
+  command : [ 'unzip', '-l', oxz_file ],
+)
+
+custom_target(
+  'verify',
+  output  : '.PHONY.verify',
+  depends : [ verify_oxp, verify_oxz ],
+  command : [ 'true' ],
+)

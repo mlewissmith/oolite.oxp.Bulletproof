@@ -16,6 +16,11 @@ declare -a zip_src
 for src in "$@"
 do
     relative_src=$(realpath --relative-base ${zip_basedir} "$src")
+    if [[ ! -e "${zip_basedir}/${relative_src}" ]]
+    then
+        echo >&2 "[WARNING]: Skipping out-of-path '$src'"
+        continue
+    fi
     zip_src+=("${relative_src}")
 done
 

@@ -5,8 +5,11 @@ infiles = [
 ]
 
 foreach infile : infiles
-  assert(infile.endswith('.in'))
-  outfile = fs.stem(infile)
+  if infile.endswith('.in')
+    outfile = fs.stem(infile)
+  else
+    outfile = fs.name(infile)
+  endif
   oxp_file = configure_file(
     input         : infile,
     output        : outfile,
