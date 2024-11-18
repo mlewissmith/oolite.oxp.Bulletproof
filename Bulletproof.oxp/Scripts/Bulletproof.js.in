@@ -1,35 +1,41 @@
+// -*- javascript -*-
 // https://wiki.alioth.net/index.php/Oolite_JavaScript_Reference:_World_script_event_handlers
+//
+// Inspired by discussion at https://bb.oolite.space/viewtopic.php?p=284994#p284994
+// Original source released to public domain by 'hulo'
 
 "use strict";
 
 this.name        = "@OXP_TITLE@";
 this.author      = "@OXP_AUTHOR@";
-this.copyright   = "2024 @OXP_AUTHOR@";
+this.copyright   = "(C) 2024 @OXP_AUTHOR@";
 this.licence     = "@OXP_LICENSE@";
 this.description = "@OXP_DESCRIPTION@";
 this.version     = "@OXP_VERSION@";
 
 
-this.$log_enabled = true;
-this._log = function(log_message) {
-    if (this.$log_enabled) { log(this.name, log_message) }
-}
+this.$debug_enabled = true;
+this._log           = function(log_message) { log(this.name, log_message) }
+this._debug         = function(debug_message) { if (this.$debug_enabled) this._log(debug_message) }
 
 
 this.startUp = function() {
-    this._log("startUp");
+    this._debug( "startUp()" );
+    this._debug( "name        : " + this.name );
+    this._debug( "author      : " + this.author );
+    this._debug( "copyright   : " + this.copyright );
+    this._debug( "license     : " + this.license );
+    this._debug( "description : " + this.description );
+    this._debug( "version     : " + this.version );
 }
 
 
-// see https://bb.oolite.space/viewtopic.php?p=284994#p284994
-this.shipBeingAttacked = function(whom)
-{
-    player.ship.aftShield = player.ship.maxAftShield;
+this.shipBeingAttacked = function(whom) {
+    player.ship.aftShield     = player.ship.maxAftShield;
     player.ship.forwardShield = player.ship.maxForwardShield;
 }
 
-this.shipBeingAttackedByCloaked = function()
-{
-    player.ship.aftShield = player.ship.maxAftShield;
+this.shipBeingAttackedByCloaked = function() {
+    player.ship.aftShield     = player.ship.maxAftShield;
     player.ship.forwardShield = player.ship.maxForwardShield;
 }

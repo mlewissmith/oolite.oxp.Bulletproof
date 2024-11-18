@@ -10,7 +10,7 @@ PROJECT_LICENSE  = meson.project_license().get(0)
 
 prj_config = configuration_data(
   {
-    'OXP_TITLE'       : 'Bulletproof OXP',
+    'OXP_TITLE'       : 'Bulletproof',
     'OXP_DESCRIPTION' : 'Player\'s ship is immune to lasers',
     'OXP_AUTHOR'      : 'mils32k',
     'OXP_IDENTIFIER'  : 'oolite.oxp.mils32k.Bulletproof',
