@@ -8,7 +8,7 @@ PROJECT_NAME     = meson.project_name()
 PROJECT_VERSION  = meson.project_version()
 PROJECT_LICENSE  = meson.project_license().get(0)
 
-prj_config = configuration_data(
+oxp_cfg_data = configuration_data(
   {
     'OXP_TITLE'       : 'Bulletproof',
     'OXP_DESCRIPTION' : 'Player\'s ship is immune to lasers',
@@ -32,7 +32,7 @@ ZIP_SH = find_program('zip.sh', required : true)
 oxz_file = custom_target(
   'oxz',
   input            : oxp_files,
-  output           : prj_config.get('OXP_IDENTIFIER') + '.oxz',
+  output           : oxp_cfg_data.get('OXP_IDENTIFIER') + '.oxz',
   env              : {
                        'ZIP_OPTS'    : '-FS -v',
                        'ZIP_BASEDIR' : oxp_srcdir,

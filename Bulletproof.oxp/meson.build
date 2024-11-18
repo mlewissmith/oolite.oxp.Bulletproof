@@ -15,7 +15,7 @@ foreach infile : infiles
   oxp_file = configure_file(
     input         : infile,
     output        : outfile,
-    configuration : prj_config,
+    configuration : oxp_cfg_data,
   )
   oxp_files += oxp_file
 endforeach
