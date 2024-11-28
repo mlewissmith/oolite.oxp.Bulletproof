@@ -1,0 +1,69 @@
+// -*- javascript -*-
+// https://wiki.alioth.net/index.php/Equipment-overrides.plist
+// .../oolite.app/Resources/Config/equipment.plist
+
+{
+    // "EQ_WEAPON_NONE" = {
+    //     weapon_info = {
+    //         range = 32000;
+    //         energy = 0.0;
+    //         damage = 0.0;
+    //         recharge_rate = 100.0;
+    //         shot_temperature = 0.0;
+    //         threat_assessment = -1.0;
+    //     };
+    // };
+
+    "EQ_WEAPON_PULSE_LASER" = {
+        weapon_info = {
+            // range = 12500;
+            // energy = 0.8;
+            // damage = 15.0;
+            // recharge_rate = 0.5;
+            // shot_temperature = 7.0;
+            shot_temperature = 0.0;
+            // color = "redColor";
+            // threat_assessment = 0.0;
+        };
+    };
+
+    "EQ_WEAPON_BEAM_LASER" = {
+        weapon_info = {
+            // range = 15000;
+            // energy = 0.5;
+            // damage = 6.0;
+            // recharge_rate = 0.1;
+            // shot_temperature = 3.2;
+            shot_temperature = 0.0;
+            // color = "yellowColor";
+            // threat_assessment = 0.5;
+        };
+    };
+
+    "EQ_WEAPON_MINING_LASER" = {
+        weapon_info = {
+            // range = 12500;
+            // energy = 1.4;
+            // damage = 50.0;
+            // recharge_rate = 2.5;
+            // shot_temperature = 10.0;
+            shot_temperature = 0.0;
+            // color = "blueColor";
+            // is_mining_laser = 1;
+            // threat_assessment = -0.5;
+        };
+    };
+
+    "EQ_WEAPON_MILITARY_LASER" = {
+        weapon_info = {
+            // range = 30000;
+            // energy = 1.1;
+            // damage = 12.0;
+            // recharge_rate = 0.1;
+            // shot_temperature = 4.25;
+            shot_temperature = 0.0;
+            // color = "magentaColor";
+            // threat_assessment = 1.0;
+        };
+    };
+}

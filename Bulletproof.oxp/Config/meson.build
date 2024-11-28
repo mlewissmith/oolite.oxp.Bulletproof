@@ -1,6 +1,7 @@
 fs = import('fs')
 
 infiles = [
+  'equipment-overrides.plist.in',
   'world-scripts.plist.in',
 ]
 
